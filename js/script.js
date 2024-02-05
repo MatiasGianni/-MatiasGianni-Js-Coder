@@ -1,3 +1,5 @@
+/* PRIMER Entrega
+
 let suma=0
 let cont=0 
 let promedio = 0
@@ -30,3 +32,39 @@ while(entrada !== null){
 promedio= suma/cont
 
 promedio=alert("El promedio es: " + promedio)
+*/
+
+const boton = document.getElementById("guardar");
+const forRegis = document.getElementById("registros");
+const modeloAuto = document.getElementById("modelo");
+const modeloAño = document.getElementById("año");
+const modeloPatente = document.getElementById("patente");
+
+boton.addEventListener("click", () => {
+    
+    const auto = modeloAuto.value;
+    const año = modeloAño.value;
+    const patente = modeloPatente.value;
+
+if (!auto || !año || !patente){
+    alert("Ingresar datos del vehiculo");
+    return;
+}
+
+const newCard = document.createElement("div");
+newCard.innerHTML=`
+<div class="col-12 col-md-12 col-lg-4 text-center card-auto justify-content-center">
+<h2>Registro</h2>
+<h3>Modelo: ${auto}</h3>
+<h3>Año: ${año}</h3>
+<h3>Patente: ${patente}</h3>
+</div>
+`;
+
+forRegis.appendChild(newCard);
+
+modeloAuto.value = "";
+modeloAño.value = "";
+modeloPatente.value = "";
+
+});

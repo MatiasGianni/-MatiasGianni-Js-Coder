@@ -1,0 +1,44 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-size: 62.5%;/*10px*/
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&family=Barlow:wght@300&family=Montserrat:wght@300&family=Nunito:wght@200;300&family=Poppins:wght@300&family=Roboto:wght@300&family=Rubik:wght@300&family=Space+Mono&family=Tektur&display=swap');
+
+.card-auto{
+    text-align: center;
+    padding: 2rem;
+    background-color: rgb(196, 86, 82);;
+    border-radius: 50%;
+}
+
+.contAutos{
+    padding: 5rem;
+    text-align: center;
+}
+    .contAutos{
+    background-color: rgb(182, 44, 39);
+}
+
+header{
+    text-align: center;
+    font-size: 30px;
+    background-color: rgb(182, 44, 39);
+    color: #000000;
+}
+p{
+    font-size: 2rem;
+}
+
+button{
+    font-size: rem;
+    padding: 2rem 3rem;
+}
+input {
+    box-shadow: 0 0 1px rgb(0, 0, 0);
+}
