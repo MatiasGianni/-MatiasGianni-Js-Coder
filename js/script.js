@@ -31,72 +31,57 @@ console.log(data)
 document.addEventListener("DOMContentLoaded", function() {
 
     const carrito = document.getElementById("carrito");
-    const elementos = document.getElementById("lista-1");
-    const lista = document.querySelector("#lista-carrito tbody");
-    const vaciarCarritoB = document.getElementById("vaciar-carrito");
+    const vaciarCarritoB = document.getElementById("limpiar-carrito");
+    const comprarBtn = document.querySelector(".comprar");
 
     cargarEventos();
 
-    function cargarEventos(){
-    elementos.addEventListener("click", comprarElemento);
-    carrito.addEventListener("click", elimatarElemento);
-    vaciarCarritoB.addEventListener("click", vaciarCarrito);
+    function cargarEventos() {
+        const elementos = document.querySelectorAll(".agregar-articulo");
+        elementos.forEach(elemento => {
+            elemento.addEventListener("click", comprarElemento);
+        });
+        carrito.addEventListener("click", eliminarElemento);
+        vaciarCarritoB.addEventListener("click", vaciarCarrito);
+        comprarBtn.addEventListener("click", comprar);
     }
-}
 
+    function comprarElemento(e) {
+        e.preventDefault();
+        const elemento = e.target.parentElement.parentElement;
+        const modelo = elemento.querySelector(".card-title").textContent.split(":")[1].trim();
+        const año = elemento.querySelector(".card-text:nth-child(4)").textContent.split(":")[1].trim();
+        const precio = elemento.querySelector(".card-text:nth-child(2)").textContent.split("$")[1].trim();
+        insertarElemento(modelo, año, precio);
+    }
 
+    function insertarElemento(modelo, año, precio) {
+        const lista = document.querySelector("#carrito tbody");
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${modelo}</td>
+            <td>${año}</td>
+            <td>${precio}</td>
+            <td><button class="btn btn-danger btn-sm eliminar">Eliminar</button></td>
+        `;
+        lista.appendChild(row);
+    }
 
+    function eliminarElemento(e) {
+        e.preventDefault();
+        if (e.target.classList.contains("eliminar")) {
+            e.target.parentElement.parentElement.remove();
+        }
+    }
 
+    function vaciarCarrito() {
+        const lista = document.querySelector("#carrito tbody");
+        while (lista.firstChild) {
+            lista.removeChild(lista.firstChild);
+        }
+    }
 
-function cargarEventos(){
-    elementos.addEventListener("click", comprarElemento);
-    carrito.addEventListener("click", elimatarElemento);
-    vaciarCarritoB.addEventListener("click", vaciarCarrito);
+    function comprar() {
+        Swal.fire("Gracias por comprar");
+    }
 });
-
-function comprarElemento(e){
-    e.prevenDefault();
-    if(e.targer.classList.contains("agregar-carrito")){
-        const elemento = e.targer.parentElement.parentElement;
-        leerDatosElemento(elemento);
-    }
-}
-
-function leerDatosElemento(elemento){
-    const infoElemento ={
-        imagen: elemento.querySelector("img").src,
-        titulo: elemento.querySelector("h3").textContent,
-        precio: elemento.querySelector("precio").textContent,
-        id: elemento.querySelector("a").getAtribute("data-id")
-    }
-    insetarCarrito(infoElemento);
-}
-
-function insetarCarrito(elemento){
-
-    const row = document.createElement("tr")
-    row.innerHTML=`
-        <td><img src=${aelemento.imagen}</td>
-        <td>${elemento.titulo}</td>
-        <td>${elemento.precio}</td>
-        <td><a herf="a" class="borrar" data-id${elemento.id}">X</td>
-    `;
-lista.appendChild(row);
-}
-
-function elimarElemento(e){
-    e.preventDefault();
-    elementoId;
-    if(e.target.classList.contains("borrar")){
-        e.targer.parentElement.parentElement.remove();
-        elemento = e.targer.parentElement.parentElement;
-        elementoId = elemento.querySelector("a").getAttribute("date-id");
-    }
-}
-
-function vaciarCarrito(){
-    while(lista.firsChild){
-        lista.removeChild(lista.firstChild);
-    }
-    return false;
-}
