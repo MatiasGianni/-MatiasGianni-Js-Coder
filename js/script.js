@@ -1,70 +1,102 @@
-/* PRIMER Entrega
+fetch("js/productos.json")
+.then(respuesta=>respuesta.json())
+.then(data =>{
+console.log(data)
+    const autos = data.autos;
+    const autosContainer = document.getElementById("productos");
 
-let suma=0
-let cont=0 
-let promedio = 0
+    autos.forEach(auto => {
+        const autoElement = document.createElement("div");
+        autoElement.className = "col-12 col-sm-12 col-md-4 col-lg-4 producto";
+        autoElement.innerHTML = `
+        <div class="card">
+            <img src="${auto.img}" class="card-img-top" alt="${auto.modelo}">
+            <div class="card-body">
+                <h2 class="card-title">Modelo: ${auto.modelo}</h2>
+                <p class="card-text">Precio: $${auto.precio}</p>
+                <p class="card-text">Km:${auto.km}</p>
+                <p class="card-text">Año:${auto.año}</p>
+                <button class="btn btn-danger btn-lg agregar" id="${auto.id}">Agregar articulo</button>
+            </div>
+        </div>
+        `;
+        autosContainer.appendChild(autoElement);
+    });
 
-const array = []
+})
+.catch(error => {
+    console.error("Error al cargar los datos", error);
+})
 
-function contador(){
-    cont = cont +1
-}
+document.addEventListener("DOMContentLoaded", function() {
 
-let entrada = prompt("Ingrese notas para saber si esta aprobado (1 a 10)")
+    const carrito = document.getElementById("carrito");
+    const elementos = document.getElementById("lista-1");
+    const lista = document.querySelector("#lista-carrito tbody");
+    const vaciarCarritoB = document.getElementById("vaciar-carrito");
 
+    cargarEventos();
 
-while(entrada !== null){
-
-    const nota = parseFloat(entrada);
-
-    if(nota >= 1 && nota <=10){
-        array.push(nota)
-        suma=suma+nota
-        contador();
-        entrada = prompt("Ingrese otra nota o oprima cancelar para ver el promedio")
+    function cargarEventos(){
+    elementos.addEventListener("click", comprarElemento);
+    carrito.addEventListener("click", elimatarElemento);
+    vaciarCarritoB.addEventListener("click", vaciarCarrito);
     }
-    else{
-    entrada = prompt("ERROR ingrese notas de 1 a 10")
-    }
-
 }
 
-promedio= suma/cont
 
-promedio=alert("El promedio es: " + promedio)
-*/
 
-const boton = document.getElementById("guardar");
-const forRegis = document.getElementById("registros");
-const modeloAuto = document.getElementById("modelo");
-const modeloAño = document.getElementById("año");
-const modeloPatente = document.getElementById("patente");
 
-boton.addEventListener("click", () => {
-    
-    const auto = modeloAuto.value;
-    const año = modeloAño.value;
-    const patente = modeloPatente.value;
 
-if (!auto || !año || !patente){
-    alert("Ingresar datos del vehiculo");
-    return;
-}
-
-const newCard = document.createElement("div");
-newCard.innerHTML=`
-<div class="col-12 col-md-12 col-lg-4 text-center card-auto justify-content-center">
-<h2>Registro</h2>
-<h3>Modelo: ${auto}</h3>
-<h3>Año: ${año}</h3>
-<h3>Patente: ${patente}</h3>
-</div>
-`;
-
-forRegis.appendChild(newCard);
-
-modeloAuto.value = "";
-modeloAño.value = "";
-modeloPatente.value = "";
-
+function cargarEventos(){
+    elementos.addEventListener("click", comprarElemento);
+    carrito.addEventListener("click", elimatarElemento);
+    vaciarCarritoB.addEventListener("click", vaciarCarrito);
 });
+
+function comprarElemento(e){
+    e.prevenDefault();
+    if(e.targer.classList.contains("agregar-carrito")){
+        const elemento = e.targer.parentElement.parentElement;
+        leerDatosElemento(elemento);
+    }
+}
+
+function leerDatosElemento(elemento){
+    const infoElemento ={
+        imagen: elemento.querySelector("img").src,
+        titulo: elemento.querySelector("h3").textContent,
+        precio: elemento.querySelector("precio").textContent,
+        id: elemento.querySelector("a").getAtribute("data-id")
+    }
+    insetarCarrito(infoElemento);
+}
+
+function insetarCarrito(elemento){
+
+    const row = document.createElement("tr")
+    row.innerHTML=`
+        <td><img src=${aelemento.imagen}</td>
+        <td>${elemento.titulo}</td>
+        <td>${elemento.precio}</td>
+        <td><a herf="a" class="borrar" data-id${elemento.id}">X</td>
+    `;
+lista.appendChild(row);
+}
+
+function elimarElemento(e){
+    e.preventDefault();
+    elementoId;
+    if(e.target.classList.contains("borrar")){
+        e.targer.parentElement.parentElement.remove();
+        elemento = e.targer.parentElement.parentElement;
+        elementoId = elemento.querySelector("a").getAttribute("date-id");
+    }
+}
+
+function vaciarCarrito(){
+    while(lista.firsChild){
+        lista.removeChild(lista.firstChild);
+    }
+    return false;
+}

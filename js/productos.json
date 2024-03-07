@@ -1,0 +1,78 @@
+{
+
+  "autos":[
+    {
+      "id": "Toyota Corolla 2018",
+      "modelo": "Toyota Corolla",
+      "precio": 25000,
+      "km": 50000,
+      "año": 2018,
+      "img": "./assets/img/productos/Toyota-Corolla.png"
+    },
+    {
+      "id": "Honda HR-V 2019",
+      "modelo": "Honda HR-V",
+      "precio": 27000,
+      "km": 45000,
+      "año": 2019,
+      "img": "./assets/img/productos/Honda-HR-V.png"
+    },
+    {
+      "id": "Ford Mondeo 2017",
+      "modelo": "Ford Mondeo",
+      "precio": 35000,
+      "km": 30000,
+      "año": 2017,
+      "img": "./assets/img/productos/Ford-Mondeo.png"
+    },
+    {
+      "id": "Chevrolet Cruze 2019",
+      "modelo": "Chevrolet Cruze",
+      "precio": 38000,
+      "km": 20000,
+      "año": 2019,
+      "img": "./assets/img/productos/Chevrolet-Cruze.png"
+    },
+    {
+      "id": "Nissan Sentra 2020",
+      "modelo": "Nissan Sentra",
+      "precio": 80000,
+      "km": 15000,
+      "año": 2020,
+      "img": "./assets/img/productos/Nissan-Sentra.png"
+    },
+    {
+      "id": "Fiat Cronos 2018",
+      "modelo": "Fiat Cronos",
+      "precio": 42000,
+      "km": 40000,
+      "año": 2018,
+      "img": "./assets/img/productos/Fiat-Cronos.png"
+    },
+    {
+      "id": "Peugeot 208 2019",
+      "modelo": "Peugeot 208",
+      "precio": 45000,
+      "km": 35000,
+      "año": 2019,
+      "img": "./assets/img/productos/Peugeot-208.png"
+    },
+    {
+      "id": "Audi A1 2020",
+      "modelo": "Audi A1",
+      "precio": 43000,
+      "km": 32000,
+      "año": 2020,
+      "img": "./assets/img/productos/Audi-A1.png"
+    },
+    {
+      "id": "Volkswagen Gol Trend 2017",
+      "modelo": "Volkswagen Gol Trend",
+      "precio": 23000,
+      "km": 60000,
+      "año": 2017,
+      "img": "./assets/img/productos/Volkswagen-Gol-Trend.png"
+    }
+  ]
+
+}
