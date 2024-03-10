@@ -1,13 +1,12 @@
 {
-
-  "autos":[
+  "autos": [
     {
       "id": "Toyota Corolla 2018",
       "modelo": "Toyota Corolla",
       "precio": 25000,
       "km": 50000,
       "año": 2018,
-      "img": "./assets/img/productos/Toyota-Corolla.png"
+      "img": null
     },
     {
       "id": "Honda HR-V 2019",
@@ -67,12 +66,11 @@
     },
     {
       "id": "Volkswagen Gol Trend 2017",
-      "modelo": "Volkswagen Gol Trend",
+      "modelo": "VW Gol Trend",
       "precio": 23000,
       "km": 60000,
       "año": 2017,
       "img": "./assets/img/productos/Volkswagen-Gol-Trend.png"
     }
   ]
-
 }
